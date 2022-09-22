@@ -28,3 +28,23 @@ class Gaussian():
         avg = 1 * sum(self.data) / len(self.data)
         self.mean = avg
         return self.mean
+
+    def read_data_file(self, filename, sample=True):
+        """Read text file into a list.
+
+        The file should contain one number (float) per line. The numbers are stored in the attribute data.
+        Then the standard deviation and mean are calculated and stored in their attributes.
+
+        Args:
+            filename (string): The file path and name.
+
+        Returns:
+            None
+        """
+        with open(filename, 'r') as file:
+            numbers = file.read().strip().split('\n')
+            numbers = list(map(int, numbers))
+        file.close()
+
+        self.data = numbers
+        self.mean = self.calculate_mean()
