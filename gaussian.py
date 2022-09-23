@@ -2,8 +2,7 @@ import math
 import matplotlib.pyplot as plt
 
 class Gaussian():
-    """
-    Create Gaussian class for calculation and visualization of a Gaussian distribution.
+    """Create Gaussian class for calculation and visualization of a Gaussian distribution.
 
     Attributes
         mean : float
@@ -29,6 +28,25 @@ class Gaussian():
         self.mean = avg
         return self.mean
 
+    def calculate_std(self, sample=True):
+        """Calculate the standard deviation of data set.
+
+        Args:
+            sample (bool): whether the data is a subset or population.
+        Returns:
+            The standard deviation of the data set.
+        """
+        mean = self.mean
+        sigma = 0
+        if sample:
+            n = len(self.data) - 1
+        else:
+            n = len(self.data)
+        for x in self.data:
+            sigma += (x - mean) ** 2
+        self.std = math.sqrt(sigma / n)
+        return self.std
+
     def read_data_file(self, filename, sample=True):
         """Read text file into a list.
 
@@ -37,7 +55,7 @@ class Gaussian():
 
         Args:
             filename (string): The file path and name.
-
+            sample (bool): whether the data is a subset or population.
         Returns:
             None
         """
