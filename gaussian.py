@@ -66,3 +66,24 @@ class Gaussian():
 
         self.data = numbers
         self.mean = self.calculate_mean()
+
+    def plot_hist(self):
+        """Function to output a histogram using the matplotlib module.
+
+        Args:
+            None
+        Returns:
+            Histogram plot
+        """
+        plt.hist(self.data)
+        plt.ylabel("count")
+        plt.xlabel("data")
+
+    def pdf(self, x):
+        """Probability Density function for calculating the Gaussian distribution.
+        
+        Args: 
+            x (float): point for calculation the probality of the Gaussian distribution
+        """
+        return (1.0 / (self.std * math.sqrt(2*math.pi))) * math.exp(-0.5*((x - self.mean) / self.std) ** 2)
+
